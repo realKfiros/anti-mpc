@@ -1,0 +1,17 @@
+{
+  "name": "anti-mpc",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "prepare": "husky install"
+  },
+  "author": "realKfiros",
+  "license": "ISC",
+  "devDependencies": {
+    "concurrently": "^6.2.1",
+    "eslint": "^7.32.0",
+    "husky": "^7.0.1"
+  }
+}
