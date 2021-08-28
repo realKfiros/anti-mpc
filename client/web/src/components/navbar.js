@@ -17,33 +17,26 @@ const useStyles = makeStyles((theme) => ({
     },
 
     TBclass: {
-        px: 10
+        px: 10,
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'flex-start',
+        padding: theme.spacing(0, 1),
+        // necessary for content to be below app bar
+        ...theme.mixins.toolbar,
     },
     Text: {
     }
+    
 }));
 
 
 
 export default function Navbar() {
-
-    const amount = useSelector((state) => state.home);
-
+    
     const dispatch = useDispatch();
-
-    const { depositMoney, withdrawMoney } = bindActionCreators(actionCreators, dispatch);
-  
+    const { openDrawer } = bindActionCreators(actionCreators, dispatch);
     const classes = useStyles();
-
-    const [open, setOpen] = React.useState(false);
-
-    const handleDrawerOpen = () => {
-        setOpen(true);
-    };
-
-    const handleDrawerClose = () => {
-        setOpen(false);
-    };
 
     return (
         <AppBar dir="rtl" className={classes.root}>
@@ -51,7 +44,7 @@ export default function Navbar() {
                 <Toolbar className={classes.TBclass}>
                     <IconButton color="inherit"
                         aria-label="open drawer"
-                        onClick={() => depositMoney(1000)}
+                        onClick={() => openDrawer()}
                         edge="start"
                         className={clsx(classes.menuButton, {
                             [classes.hide]: open,
@@ -60,7 +53,7 @@ export default function Navbar() {
                     </IconButton>
                     <Box mx={4}>
                         <Typography variant="h3" className={classes.Text}>
-                            עד מ"צי? {amount}
+                            עד מ"צי?
                         </Typography>
                     </Box>
                 </Toolbar>

@@ -1,19 +1,16 @@
-export const depositMoney = (amount) => {
+export const openDrawer = () => {
     return (dispatch) => {
         dispatch({
-            type: "deposit",
-            payload: amount
+            type: "open",
         });
     }
 }
 
 
-export const withdrawMoney = (amount) => {
-    console.log(amount, "Lol")
+export const closeDrawer = () => {
     return (dispatch) => {
         dispatch({
-            type: "withdraw",
-            payload: amount
+            type: "close",
         });
     }
 }
