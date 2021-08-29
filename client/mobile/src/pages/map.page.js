@@ -1,23 +1,15 @@
-import React, {useState, useEffect} from 'react';
-import {View, Dimensions, StyleSheet} from "react-native";
+import React, {useContext} from 'react';
+import {StyleSheet, View} from "react-native";
 import MapView, {Marker} from "react-native-maps";
-import RNLocation from 'react-native-location';
-import styled from 'styled-components';
 import {observer} from "mobx-react-lite";
+import {MainStoreContext} from "../stores/store";
+import {Screen} from "../components/screen.component";
 
 export const MapPage = observer(() =>
 {
-	const [coordinates, setCoordinates] = useState();
+	const {coordinates} = useContext(MainStoreContext).getStore('location');
 
-	useEffect(() =>
-	{
-		RNLocation.subscribeToLocationUpdates(locations =>
-		{
-			setCoordinates(locations[0]);
-		});
-	}, []);
-
-	const region = {
+	let region = {
 		...coordinates,
 		latitudeDelta: 0.0922,
 		longitudeDelta: 0.0421
@@ -25,12 +17,7 @@ export const MapPage = observer(() =>
 
 	return <Screen>
 		<MapView region={region} style={StyleSheet.absoluteFill}>
-			<Marker coordinate={coordinates} />
+			<Marker coordinate={region} />
 		</MapView>
 	</Screen>
 });
-
-const Screen = styled(View)`
-	height: ${Dimensions.get('screen').height}px;
-	width: ${Dimensions.get('screen').width}px;
-`;

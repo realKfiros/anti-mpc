@@ -11,5 +11,15 @@ export class LocationStore
 	constructor()
 	{
 		makeObservable(this);
+		this.run();
+	}
+
+	@action
+	run()
+	{
+		RNLocation.subscribeToLocationUpdates(locations =>
+		{
+			this.coordinates = locations[0];
+		});
 	}
 }
